@@ -13,7 +13,7 @@ class Section extends Model
         return $this->belongsTo(Resume::class);
     }
 
-    public function items()
+    public function sectionItems()
     {
         return $this->hasMany(SectionItem::class);
     }

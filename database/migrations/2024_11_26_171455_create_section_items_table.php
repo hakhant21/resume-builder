@@ -18,6 +18,7 @@ return new class extends Migration
             $table->longText('description');
             $table->datetime('start_date')->nullable();
             $table->datetime('end_date')->nullable();
+            $table->boolean('is_current')->default(0);
             $table->json('files')->nullable();
             $table->timestamps();
         });

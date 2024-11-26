@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\SectionItemResource\Pages;
 use App\Filament\Resources\SectionItemResource\RelationManagers;
+use App\Filament\Resources\SectionItemResource\RelationManagers\SectionRelationManager;
 use App\Models\SectionItem;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -34,7 +35,15 @@ class SectionItemResource extends Resource
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('start_date'),
-                Forms\Components\DatePicker::make('end_date'),
+                Forms\Components\DatePicker::make('end_date')
+                    ->reactive()
+                    ->disabled(fn (callable $get) => $get('is_current')),
+                Forms\Components\Toggle::make('is_current')
+                    ->default(false)
+                    ->reactive()
+                    ->afterStateUpdated(function ($state, callable $set) {
+                        $set('end_date', $state ? now() : null);
+                    }),
                 Forms\Components\FileUpload::make('files')
                     ->multiple()
                     ->directory('section-items')
@@ -55,6 +64,8 @@ class SectionItemResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('end_date')
                     ->date()
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('is_current')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -81,7 +92,7 @@ class SectionItemResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            SectionRelationManager::class
         ];
     }
 
