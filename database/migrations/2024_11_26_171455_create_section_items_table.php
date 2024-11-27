@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('section_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->longText('description');
+            $table->longText('description')->nullable();
             $table->datetime('start_date')->nullable();
             $table->datetime('end_date')->nullable();
             $table->boolean('is_current')->default(0);

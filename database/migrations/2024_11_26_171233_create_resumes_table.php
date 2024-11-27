@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->text('address');
-            $table->string('github');
-            $table->string('website');
-            $table->string('image');
+            $table->string('github')->nullable();
+            $table->string('website')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }

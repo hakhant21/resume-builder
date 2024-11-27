@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('resume_id')->constrained()->onDelete('cascade');
             $table->string('name');
-            $table->enum('type', ['educations', 'experiences', 'skills', 'languages', 'interests']);
+            $table->enum('type', ['educations', 'experiences', 'skills', 'languages', 'certificates', 'interests']);
             $table->timestamps();
         });
     }
