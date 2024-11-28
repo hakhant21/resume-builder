@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\User;
 use App\Models\Resume;
 use App\Models\Section;
 use Illuminate\Database\Seeder;
@@ -14,7 +15,10 @@ class ResumeSeeder extends Seeder
      */
     public function run(): void
     {
+        $user = User::firstOrFail();
+
         $resume = Resume::create([
+            'user_id' => $user->id,
             'name' => 'Htet Aung Khant',
             'email' => 'hakhant21@gmail.com',
             'position' => 'Senior Web Developer',
