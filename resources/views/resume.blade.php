@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -61,7 +62,6 @@
         .header-img {
             width: 100px;
             height: 100px;
-            border-radius: 50px;
             overflow: hidden;
             position: absolute;
             top: 10px;
@@ -83,12 +83,11 @@
         }
 
         .section {
-            margin-bottom: 20px;
+            margin-bottom: 5px;
         }
 
         .section h2 {
             font-size: 20px;
-            margin-bottom: 10px;
             color: #444;
             border-bottom: 2px solid #f4f4f4;
             padding-bottom: 5px;
@@ -101,8 +100,8 @@
         }
 
         .section ul li {
-            margin-bottom: 10px;
-            line-height: 1.6;
+            margin-bottom: 5px;
+            line-height: 1.2;
         }
 
         .section ul li span {
@@ -117,7 +116,7 @@
 
         .skill {
             background: #e0e0e0;
-            padding: 5px 10px;
+            padding: 5px 5px;
             border-radius: 5px;
             font-size: 14px;
             color: #555;
@@ -137,6 +136,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
         <!-- Header Section -->
@@ -149,36 +149,36 @@
                     <table class="info-table">
                         <tr>
                             <td><strong>Name</strong></td>
-                            <td>Htet Aung Khant</td>
+                            <td>{{ $resume->name }}</td>
                         </tr>
                         <tr>
                             <td><strong>Position</strong></td>
-                            <td>Senior Backend Developer</td>
+                            <td>{{ $resume->position }}</td>
                         </tr>
                         <tr>
                             <td><strong>Email</strong></td>
-                            <td>johndoe@example.com</td>
+                            <td>{{ $resume->email }}</td>
                         </tr>
                         <tr>
                             <td><strong>Phone</strong></td>
-                            <td>(123) 456-7890</td>
+                            <td>{{ $resume->phone }}</td>
                         </tr>
                         <tr>
                             <td><strong>Address</strong></td>
-                            <td>City, Country</td>
+                            <td>{{ $resume->address }}</td>
                         </tr>
                         <tr>
                             <td><strong>Github</strong></td>
-                            <td><a href="https://github.com/hakhant21" target="_blank">hakhant21</a></td>
+                            <td><a href="https://github.com/hakhant21" target="_blank">{{ $resume->github }}</a></td>
                         </tr>
                         <tr>
                             <td><strong>Website</strong></td>
-                            <td><a href="https://hakhant.tech" target="_blank">hakhant.tech</a></td>
+                            <td><a href="https://hakhant.tech" target="_blank">{{ $resume->website }}</a></td>
                         </tr>
                     </table>
                 </td>
                 <td>
-                    <img src="images/profile.jpg" alt="Profile Picture" class="header-img">
+                    <img src="{{ $resume->image }}" alt="Profile Picture" class="header-img">
                 </td>
             </tr>
         </table>
@@ -187,59 +187,59 @@
         <div class="section">
             <h2>About me</h2>
             <p>
-                Motivated professional with extensive experience in [Your Field].
-                Skilled at delivering results in fast-paced environments while maintaining quality.
+                {!! $resume->aboutme !!}
             </p>
         </div>
 
-        <!-- Work Experience Section -->
+
         <div class="section">
-            <h2>Work Experience</h2>
+            <h2>Experience</h2>
             <ul>
-                <li>
-                    <span>Job Title 1</span> - Company Name (Start Date - End Date)
-                    <p>Brief description of responsibilities and achievements in this role.</p>
-                </li>
-                <li>
-                    <span>Job Title 2</span> - Company Name (Start Date - End Date)
-                    <p>Brief description of responsibilities and achievements in this role.</p>
-                </li>
+                @foreach($sectionItems['experiences'] as $item)
+                    <li>
+                        <span>{{ $item['title'] }}</span> - {{ $item['company'] }} ({{ date('d/m/Y', strtotime($item['start_date'])) }} - {{ $item['end_date'] ? date('d/m/Y', strtotime($item['end_date'])) : 'Present' }})
+                        <p>{{ $item['description'] }}</p>
+                    </li>
+                @endforeach
             </ul>
         </div>
 
-        <!-- Education Section -->
         <div class="section">
             <h2>Education</h2>
             <ul>
-                <li>
-                    <span>Degree</span> - Institution Name (Year)
-                    <p>Additional information if applicable.</p>
-                </li>
+                @foreach($sectionItems['educations'] as $item)
+                    <li>
+                        <span>{{ $item['title'] }}</span> ( {{ $item['company'] }} ) - {{ date('d/m/Y', strtotime($item['end_date'])) }}
+                        <p></p>
+                    </li>
+                @endforeach
             </ul>
-        </div>
-
-        <!-- Skills Section -->
-        <div class="section">
-            <h2>Skills</h2>
-            <div class="skills">
-                <div class="skill">Skill 1</div>
-                <div class="skill">Skill 2</div>
-                <div class="skill">Skill 3</div>
-                <div class="skill">Skill 4</div>
-            </div>
         </div>
 
         <div class="page-break"></div>
-        <!-- Language Section -->
+
         <div class="section">
-            <h2>Language</h2>
+            <h2>Skills</h2>
+            <div class="skills">
+                @foreach($sectionItems['skills'] as $item)
+                    <div class="skill">{{ $item['title'] }}</div>
+                @endforeach
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>Languages</h2>
             <ul>
-                <li>
-                    <span>Degree</span> - Institution Name (Year)
-                    <p>Additional information if applicable.</p>
-                </li>
+                @foreach($sectionItems['languages'] as $item)
+                    <li>
+                        <span>{{ $item['title'] }}</span>
+                    </li>
+                @endforeach
             </ul>
         </div>
+
     </div>
 </body>
+
 </html>

@@ -32,6 +32,8 @@ class SectionItemResource extends Resource
                 Forms\Components\TextInput::make('title')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\TextInput::make('company')
+                    ->maxLength(255),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
                 Forms\Components\DatePicker::make('start_date'),
@@ -58,6 +60,8 @@ class SectionItemResource extends Resource
                 Tables\Columns\TextColumn::make('section.name')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('company')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('start_date')
                     ->date()

@@ -20,7 +20,8 @@ class SectionItemsRelationManager extends RelationManager
         ->schema([
                 Forms\Components\TextInput::make('title')
                     ->required()
-                    ->columnSpanFull()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('company')
                     ->maxLength(255),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
@@ -47,6 +48,7 @@ class SectionItemsRelationManager extends RelationManager
             ->recordTitleAttribute('title')
             ->columns([
                 Tables\Columns\TextColumn::make('title'),
+                Tables\Columns\TextColumn::make('company'),
                 Tables\Columns\TextColumn::make('description'),
                 Tables\Columns\TextColumn::make('start_date'),
                 Tables\Columns\TextColumn::make('end_date'),
