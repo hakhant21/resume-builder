@@ -27,7 +27,7 @@ class ResumeSeeder extends Seeder
             'github' => 'https://github.com/hakhant21',
             'website' => null,
             'aboutme' => "<p>As a Senior Backend Developer with 4+ years of experience, I specialize in building robust, scalable systems using PHP, Node.js, Laravel, and Express.js. My expertise spans SQL (PostgreSQL, MySQL), NoSQL (MongoDB, Redis), and real-time IoT communication via MQTT. I excel in solving complex problems, optimizing database interactions, and ensuring secure, high-performance API integrations. Passionate about mentoring, I promote clean code and best practices while delivering systems focused on security, performance, and user satisfaction. In my spare time, I explore emerging technologies and contribute to open-source projects.</p>",
-            'image' => 'images/profile.jpg',
+            'image' => 'images/cv.jpg',
         ]);
 
         $items = [

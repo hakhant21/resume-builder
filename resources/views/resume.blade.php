@@ -171,10 +171,10 @@
                             <td><strong>Github</strong></td>
                             <td><a href="https://github.com/hakhant21" target="_blank">{{ $resume->github }}</a></td>
                         </tr>
-                        <tr>
+                        {{-- <tr>
                             <td><strong>Website</strong></td>
                             <td><a href="https://hakhant.tech" target="_blank">{{ $resume->website }}</a></td>
-                        </tr>
+                        </tr> --}}
                     </table>
                 </td>
                 <td>
@@ -209,7 +209,7 @@
             <ul>
                 @foreach($sectionItems['educations'] as $item)
                     <li>
-                        <span>{{ $item['title'] }}</span> ( {{ $item['company'] }} ) - {{ date('d/m/Y', strtotime($item['end_date'])) }}
+                        <span>{{ $item['title'] }}</span> - {{ date('d/m/Y', strtotime($item['end_date'])) }}
                         <p></p>
                     </li>
                 @endforeach
