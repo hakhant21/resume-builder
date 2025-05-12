@@ -30,6 +30,19 @@ class ResumeController extends Controller
 
     public function download()
     {
+        $resume = Resume::with('sections')->first();
 
+        $sectionItems = [];
+        $resume->sections->each(function ($section) use (&$sectionItems) {
+            $lists = SectionItem::where('section_id', $section->id)->get();
+            $sectionItems[$section->type] = $lists;
+        });
+
+        $pdf = Pdf::loadView('resume', [
+            'resume' => $resume,
+            'sectionItems' => $sectionItems
+        ]);
+
+        return $pdf->download("$resume->name.pdf");
     }
 }

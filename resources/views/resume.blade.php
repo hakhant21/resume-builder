@@ -109,6 +109,12 @@
             color: #555;
         }
 
+        .section ul li .description {
+            font-size: 14px;
+            color: #666;
+            word-wrap: break-word;
+        }
+
         .skills {
             display: inline-block;
             margin: 0 -5px;
@@ -177,9 +183,11 @@
                         </tr> --}}
                     </table>
                 </td>
-                <td>
-                    <img src="{{ $resume->image }}" alt="Profile Picture" class="header-img">
-                </td>
+                {{-- <td>
+                    <div class="header-img">
+                        <img src="{{ $resume->image }}" alt="Profile Image">
+                    </div>
+                </td> --}}
             </tr>
         </table>
 
@@ -197,8 +205,11 @@
             <ul>
                 @foreach($sectionItems['experiences'] as $item)
                     <li>
-                        <span>{{ $item['title'] }}</span> - {{ $item['company'] }} ({{ date('d/m/Y', strtotime($item['start_date'])) }} - {{ $item['end_date'] ? date('d/m/Y', strtotime($item['end_date'])) : 'Present' }})
-                        <p>{{ $item['description'] }}</p>
+                        <div>
+                            <span>{{ $item['title'] }}</span> - {{ $item['company'] }} ({{ date('d/m/Y', strtotime($item['start_date'])) }} - {{ $item['end_date'] ? date('d/m/Y', strtotime($item['end_date'])) : 'Present' }})
+                            <p class="description">{!! $item['description'] !!} </p>
+                        </div>
+                        <hr>
                     </li>
                 @endforeach
             </ul>
@@ -215,8 +226,6 @@
                 @endforeach
             </ul>
         </div>
-
-        <div class="page-break"></div>
 
         <div class="section">
             <h2>Skills</h2>
